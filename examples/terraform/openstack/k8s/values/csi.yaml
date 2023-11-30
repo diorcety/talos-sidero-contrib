@@ -1,0 +1,23 @@
+csi:
+  plugin:
+    volumes:
+      - name: cacert
+        hostPath:
+          path: /etc/ca-certificates
+secret:
+  enabled: true
+  create: true
+  name: cinder-csi-cloud-config
+  data:
+    cloud.conf: |
+      [Global]
+      auth-url=${auth_url}
+      application-credential-id=${app_id}
+      application-credential-secret=${app_secret}
+      region=${region}
+      tenant-id=${project_id}
+
+      [BlockStorage]
+      rescan-on-resize=true
+      ignore-volume-az=true
+      trust-device-path=false

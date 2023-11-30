@@ -1,0 +1,7 @@
+cluster:
+  externalCloudProvider:
+    enabled: true
+machine:
+  kubelet:
+    extraArgs:
+      cloud-provider: external

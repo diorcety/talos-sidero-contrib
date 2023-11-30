@@ -1,0 +1,13 @@
+controller:
+  config:
+    entries:
+      proxy-protocol: "True"
+      real-ip-header: "proxy_protocol"
+      set-real-ip-from: "0.0.0.0/0"
+
+  service:
+    externalTrafficPolicy: Cluster
+    type: LoadBalancer
+    annotations:
+      loadbalancer.openstack.org/proxy-protocol: "true"
+      loadbalancer.openstack.org/load-balancer-id: "${lb_id}"

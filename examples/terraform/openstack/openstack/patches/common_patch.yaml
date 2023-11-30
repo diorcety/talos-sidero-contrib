@@ -1,0 +1,4 @@
+machine:
+  kubelet:
+    extraConfig:
+      allowedUnsafeSysctls: [net.ipv4.ip_forward]

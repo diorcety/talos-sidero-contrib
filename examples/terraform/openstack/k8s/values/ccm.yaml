@@ -1,0 +1,31 @@
+nodeSelector:
+  node-role.kubernetes.io/control-plane: ""
+tolerations:
+  - effect: NoSchedule
+    key: node.cloudprovider.kubernetes.io/uninitialized
+    value: "true"
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/master
+  - effect: NoSchedule
+    key: node-role.kubernetes.io/control-plane
+secret:
+  enabled: true
+  create: true
+  name: ccm-cloud-config
+  data:
+    cloud.conf: |
+      [Global]
+      auth-url=${auth_url}
+      application-credential-id=${app_id}
+      application-credential-secret=${app_secret}
+      region=${region}
+      tenant-id=${project_id}
+  
+      [LoadBalancer]
+      lb-provider=${lb_provider}
+      network-id=${lb_network_id}
+      subnet-id=${lb_subnet_id}
+      floating-network-id=${lb_floating_network_id}
+      create-monitor=true
+      enable-ingress-hostname=true
+      manage-security-groups=true
