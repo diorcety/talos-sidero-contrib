@@ -27,5 +27,4 @@ secret:
       subnet-id=${lb_subnet_id}
       floating-network-id=${lb_floating_network_id}
       create-monitor=true
-      enable-ingress-hostname=true
       manage-security-groups=true
