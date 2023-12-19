@@ -95,29 +95,3 @@ resource "openstack_networking_secgroup_rule_v2" "default" {
   remote_group_id   = each.value.from.id
   security_group_id = each.value.to.id
 }
-
-/*
-resource "openstack_networking_secgroup_rule_v2" "controlplanes4-2" {
-  direction         = "ingress"
-  ethertype         = "IPv4"
-  security_group_id = openstack_networking_secgroup_v2.controlplanes.id
-}
-
-resource "openstack_networking_secgroup_rule_v2" "controlplanes6-2" {
-  direction         = "ingress"
-  ethertype         = "IPv6"
-  security_group_id = openstack_networking_secgroup_v2.controlplanes.id
-}
-
-resource "openstack_networking_secgroup_rule_v2" "workers4-2" {
-  direction         = "ingress"
-  ethertype         = "IPv4"
-  security_group_id = openstack_networking_secgroup_v2.workers.id
-}
-
-resource "openstack_networking_secgroup_rule_v2" "workers6-2" {
-  direction         = "ingress"
-  ethertype         = "IPv6"
-  security_group_id = openstack_networking_secgroup_v2.workers.id
-}
-*/

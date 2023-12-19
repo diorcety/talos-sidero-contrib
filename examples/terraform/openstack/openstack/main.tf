@@ -20,7 +20,6 @@ locals {
 }
 
 # Create custom image
-/*
 resource "openstack_images_image_v2" "image" {
   name = "Talos Linux ${var.talos_version}"
 
@@ -37,11 +36,13 @@ resource "openstack_images_image_v2" "image" {
     ignore_changes = all
   }
 }
-*/
 
 data "openstack_images_image_v2" "image" {
   name        = "Talos Linux ${var.talos_version}"
   most_recent = true
+  depends_on = [
+    openstack_images_image_v2.image
+  ]
 }
 
 # control plane nodes
@@ -134,6 +135,8 @@ data "talos_machine_configuration" "controlplane" {
   machine_type     = "controlplane"
   machine_secrets  = talos_machine_secrets.machine_secrets.machine_secrets
 
+  kubernetes_version = var.kubernetes_version
+
   config_patches = concat([
     templatefile("${path.module}/patches/controlplane_patch.yaml", {
       loadbalancerip = local.external_ip
@@ -161,6 +164,8 @@ data "talos_machine_configuration" "worker" {
   cluster_endpoint = "https://${local.external_ip}:6443"
   machine_type     = "worker"
   machine_secrets  = talos_machine_secrets.machine_secrets.machine_secrets
+
+  kubernetes_version = var.kubernetes_version
 
   config_patches = local.k8s_patches
 }

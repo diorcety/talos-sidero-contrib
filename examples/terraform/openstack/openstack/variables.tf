@@ -9,7 +9,13 @@ variable "cluster_name" {
 variable "talos_version" {
   description = "Talos version to deploy"
   type        = string
-  default     = "v1.5.5"
+  default     = "v1.6.0"
+}
+
+variable "kubernetes_version" {
+  description = "Kubernetes version to deploy"
+  type        = string
+  default     = "v1.28.4"
 }
 
 variable "ssh_authorized_keys" {

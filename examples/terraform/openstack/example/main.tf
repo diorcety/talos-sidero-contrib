@@ -10,7 +10,7 @@ module "talos_openstack" {
 
   controlplanes = [{
     name               = "control-plane"
-    flavor_name        = "a4-ram8-disk20-perf1"
+    flavor_name        = "a4-ram8-disk20-perf2"
     nodes_count        = 1
     region             = "dc3-a"
     availability_zones = ["dc3-a-10", "dc3-a-09", "dc3-a-04"]
@@ -18,7 +18,7 @@ module "talos_openstack" {
 
   workers = [{
     name               = "worker"
-    flavor_name        = "a4-ram8-disk20-perf1"
+    flavor_name        = "a4-ram8-disk20-perf2"
     nodes_count        = 1
     region             = "dc3-a"
     availability_zones = ["dc3-a-04", "dc3-a-09", "dc3-a-10"]

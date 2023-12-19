@@ -2,7 +2,7 @@
 variable "talos_version" {
   description = "Talos version to deploy"
   type        = string
-  default     = "v1.5.5"
+  default     = "v1.6.0"
 }
 
 variable "name" {
