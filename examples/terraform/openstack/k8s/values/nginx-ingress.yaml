@@ -5,6 +5,8 @@ controller:
       real-ip-header: "proxy_protocol"
       set-real-ip-from: "0.0.0.0/0"
 
+  enableSnippets: true
+
   service:
     externalTrafficPolicy: Cluster
     type: LoadBalancer
