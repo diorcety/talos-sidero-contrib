@@ -1,4 +1,6 @@
 machine:
   kubelet:
+    extraArgs:
+      feature-gates: SchedulerQueueingHints=false
     extraConfig:
       allowedUnsafeSysctls: [net.ipv4.ip_forward]
