@@ -84,6 +84,11 @@ resource "openstack_networking_secgroup_rule_v2" "default" {
       { "port" : 10250, "protocol" : "tcp", "from" : openstack_networking_secgroup_v2.workers, "to" : openstack_networking_secgroup_v2.controlplanes },
       { "port" : 10250, "protocol" : "tcp", "from" : openstack_networking_secgroup_v2.controlplanes, "to" : openstack_networking_secgroup_v2.workers },
       { "port" : 10250, "protocol" : "tcp", "from" : openstack_networking_secgroup_v2.workers, "to" : openstack_networking_secgroup_v2.workers },
+      # prometheus
+      { "port" : 9100, "protocol" : "tcp", "from" : openstack_networking_secgroup_v2.controlplanes, "to" : openstack_networking_secgroup_v2.controlplanes },
+      { "port" : 9100, "protocol" : "tcp", "from" : openstack_networking_secgroup_v2.workers, "to" : openstack_networking_secgroup_v2.controlplanes },
+      { "port" : 9100, "protocol" : "tcp", "from" : openstack_networking_secgroup_v2.controlplanes, "to" : openstack_networking_secgroup_v2.workers },
+      { "port" : 9100, "protocol" : "tcp", "from" : openstack_networking_secgroup_v2.workers, "to" : openstack_networking_secgroup_v2.workers },
     ] :
     format("%s->%s-%s-%s", rule.from.name, rule.to.name, rule.protocol, rule.port) => rule
   }
