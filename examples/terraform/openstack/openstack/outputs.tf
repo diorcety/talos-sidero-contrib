@@ -5,12 +5,12 @@ output "talosconfig" {
 }
 
 output "kubeconfig" {
-  value     = data.talos_cluster_kubeconfig.kubeconfig.kubeconfig_raw
+  value     = talos_cluster_kubeconfig.kubeconfig.kubeconfig_raw
   sensitive = true
 }
 
 output "kubernetes_client_configuration" {
-  value = data.talos_cluster_kubeconfig.kubeconfig.kubernetes_client_configuration
+  value = talos_cluster_kubeconfig.kubeconfig.kubernetes_client_configuration
 }
 
 output "lb_id" {
